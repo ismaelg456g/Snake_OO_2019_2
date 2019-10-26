@@ -5,19 +5,23 @@
  */
 package snake;
 
-/**
- *
- * @author hercules
- */
+import java.util.*;
+
 public class Snake {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TelaInicial telaInicio = new TelaInicial();
+      /*  TelaInicial telaInicio = new TelaInicial();
         
-        telaInicio.main(args);
+        telaInicio.main(args);*/
+      Cobra abacate = new Cobra();
+      List<int[]> alea = abacate.get_coordenadas();
+      
+      System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
+      abacate.mover('c');
+      System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
     }
     
 }
