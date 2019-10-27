@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package snake;
 
 import java.util.*;
 
@@ -46,7 +45,7 @@ public class Cobra {
             }
             coordenadas.get(0)[0] = coordenadas.get(0)[0]-1;
         }else{
-            System.out.println("erro");
+            System.err.println("Erro ao mover personagem...");
         }
     }
 }
