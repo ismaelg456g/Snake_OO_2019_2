@@ -12,15 +12,15 @@ public class Snake {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TelaInicial telaInicio = new TelaInicial();
-        
-        telaInicio.main(args);
-      Cobra abacate = new Cobra();
-      List<int[]> alea = abacate.get_coordenadas();
-      
-      System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
-      abacate.mover('l');
-      System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
+        //TelaInicial telaInicio = new TelaInicial();
+
+        TelaInicial.main(args);
+        Cobra abacate = new Cobra();
+        List<int[]> alea = abacate.get_coordenadas();
+
+        System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
+        abacate.mover('l');
+        System.out.println("veja : "+ alea.get(0)[0]+ " " + alea.get(0)[1]);
     }
     
 }
