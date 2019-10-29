@@ -3,5 +3,4 @@ build.xml
 manifest.mf  
 nbproject/
 bin/*.class
-test/*
 src/*form
