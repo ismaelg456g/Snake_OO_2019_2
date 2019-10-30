@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class TelaJogo extends javax.swing.JFrame {
     private Cobra cobrinha;
     private CanvasJogo canvas;
+    threadCanvas tCanvas;
     
     // * Creates new form TelaJogo
      
@@ -24,6 +25,9 @@ public class TelaJogo extends javax.swing.JFrame {
         initComponents();
         jPanel1.add(canvas);
         setTitle("Snake");
+        tCanvas = new threadCanvas(canvas);
+        tCanvas.start();
+        
     }
 
     /**
