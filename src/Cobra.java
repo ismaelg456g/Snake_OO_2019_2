@@ -10,19 +10,16 @@ public class Cobra {
     private List<int[]> coordenadas;
     
     public Cobra(){
-        int[] calda = new int[2];
-        calda[0]=0;
-        calda[1]=0;
-        int[] corpo = new int[2];
-        corpo[0]=0;
-        corpo[1]=1;
-        int[] cabeca = new int[2];
-        cabeca[0]=0;
-        cabeca[1]=2;
         coordenadas = new ArrayList<int[]>();
-        coordenadas.add(0, cabeca);
-        coordenadas.add(1, corpo);
-        coordenadas.add(2, calda);
+        coordenadas.add(0, new int[2]);
+        coordenadas.get(0)[0]=0;
+        coordenadas.get(0)[1]=2;
+        coordenadas.add(1, new int[2]);
+        coordenadas.get(1)[0]=0;
+        coordenadas.get(1)[1]=1;
+        coordenadas.add(2, new int[2]);
+        coordenadas.get(2)[0]=0;
+        coordenadas.get(2)[1]=0;
     }
     
     public List<int[]> get_coordenadas(){
@@ -37,28 +34,47 @@ public class Cobra {
                 coordenadas.get(i)[0]=coordenadas.get(i-1)[0];
                 coordenadas.get(i)[1]=coordenadas.get(i-1)[1];
             }
-            coordenadas.get(0)[1] = coordenadas.get(0)[1]+1;
+            if(coordenadas.get(2)[0]==coordenadas.get(0)[0] && coordenadas.get(2)[1]==coordenadas.get(0)[1]+1)
+                coordenadas.get(0)[1] = coordenadas.get(0)[1]-1;
+            else
+                coordenadas.get(0)[1] = coordenadas.get(0)[1]+1;
         }else if(direcao == 'e'){ //esquerda
             for(i=coordenadas.size()-1; i>=1; i--){
                 coordenadas.get(i)[0]=coordenadas.get(i-1)[0];
                 coordenadas.get(i)[1]=coordenadas.get(i-1)[1];
             }
-            coordenadas.get(0)[1] = coordenadas.get(0)[1]-1;
+            if(coordenadas.get(2)[0]==coordenadas.get(0)[0] && coordenadas.get(2)[1]==coordenadas.get(0)[1]-1)
+                coordenadas.get(0)[1] = coordenadas.get(0)[1]+1;
+            else
+                coordenadas.get(0)[1] = coordenadas.get(0)[1]-1;
         }else if(direcao == 'b'){ //baixo
             for(i=coordenadas.size()-1; i>=1; i--){
                 coordenadas.get(i)[0]=coordenadas.get(i-1)[0];
                 coordenadas.get(i)[1]=coordenadas.get(i-1)[1];
             }
-            coordenadas.get(0)[0] = coordenadas.get(0)[0]+1;
+            if(coordenadas.get(2)[0]==coordenadas.get(0)[0]+1 && coordenadas.get(2)[1]==coordenadas.get(0)[1])
+                coordenadas.get(0)[0] = coordenadas.get(0)[0]-1;
+            else
+                coordenadas.get(0)[0] = coordenadas.get(0)[0]+1;
         }else if(direcao == 'c'){ //cima
             for(i=coordenadas.size()-1; i>=1; i--){
                 coordenadas.get(i)[0]=coordenadas.get(i-1)[0];
                 coordenadas.get(i)[1]=coordenadas.get(i-1)[1];
             }
-            coordenadas.get(0)[0] = coordenadas.get(0)[0]-1;
+            if(coordenadas.get(2)[0]==coordenadas.get(0)[0]-1 && coordenadas.get(2)[1]==coordenadas.get(0)[1]-1)
+                coordenadas.get(0)[0] = coordenadas.get(0)[0]+1;
+            else
+                coordenadas.get(0)[0] = coordenadas.get(0)[0]-1;
         }else{
             System.err.println("Erro ao mover personagem...");
         }
+    }
+    
+    public void aumentaTamanho(){
+        coordenadas.add(new int[2]);
+        coordenadas.get(coordenadas.size()-1)[0] = coordenadas.get(coordenadas.size()-2)[0];
+        coordenadas.get(coordenadas.size()-1)[1] = coordenadas.get(coordenadas.size()-2)[1];
+        
     }
     
 }

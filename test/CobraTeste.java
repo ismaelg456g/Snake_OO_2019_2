@@ -93,5 +93,34 @@ public class CobraTeste {
          assertEquals(2,coordenadas.get(1)[1]);
          assertEquals(0,coordenadas.get(0)[0]);
          assertEquals(2,coordenadas.get(0)[1]);
+         cobraTeste.mover('b');
+         assertEquals(1,coordenadas.get(2)[0]);
+         assertEquals(2,coordenadas.get(2)[1]);
+         assertEquals(0,coordenadas.get(1)[0]);
+         assertEquals(2,coordenadas.get(1)[1]);
+         assertEquals(-1,coordenadas.get(0)[0]);
+         assertEquals(2,coordenadas.get(0)[1]);
+     }
+     
+     @Test
+     public void aumentaTeste() {
+         cobraTeste.aumentaTamanho();
+         assertEquals(0,coordenadas.get(3)[0]);
+         assertEquals(0,coordenadas.get(3)[1]);
+         assertEquals(0,coordenadas.get(2)[0]);
+         assertEquals(0,coordenadas.get(2)[1]);
+         assertEquals(0,coordenadas.get(1)[0]);
+         assertEquals(1,coordenadas.get(1)[1]);
+         assertEquals(0,coordenadas.get(0)[0]);
+         assertEquals(2,coordenadas.get(0)[1]);
+         cobraTeste.mover('d');
+         assertEquals(0,coordenadas.get(3)[0]);
+         assertEquals(0,coordenadas.get(3)[1]);
+         assertEquals(0,coordenadas.get(2)[0]);
+         assertEquals(1,coordenadas.get(2)[1]);
+         assertEquals(0,coordenadas.get(1)[0]);
+         assertEquals(2,coordenadas.get(1)[1]);
+         assertEquals(0,coordenadas.get(0)[0]);
+         assertEquals(3,coordenadas.get(0)[1]);
      }
 }
