@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,11 +13,14 @@
  * @author hercules
  */
 public class TelaJogo extends javax.swing.JFrame {
-    private CanvasJogo canvas = new CanvasJogo();
+    private Cobra cobrinha;
+    private CanvasJogo canvas;
     
     // * Creates new form TelaJogo
      
     public TelaJogo() {
+        cobrinha = new Cobra();
+        canvas = new CanvasJogo(cobrinha);
         initComponents();
         jPanel1.add(canvas);
         setTitle("Snake");

@@ -19,7 +19,10 @@ public class CanvasJogo extends Canvas {
     private int canvasNumberOfRows = 25;
     private int canvasNumberOfLines = 25;
     
+    private Cobra cobrinha;
+    
    public void paint(Graphics g) {
+        int i=0;
         // Prepare an ImageIcon
         ImageIcon icon = new ImageIcon("img/terra.jpg");
         ImageIcon iconCabeca = new ImageIcon("img/cabeca.jpg");
@@ -31,19 +34,33 @@ public class CanvasJogo extends Canvas {
         final Image imgCorpo = iconCorpo.getImage();
         final Image imgCalda = iconCalda.getImage();
 
-        for(int i = 0; i < canvasNumberOfRows; i++) {
+        for(i = 0; i < canvasNumberOfRows; i++) {
             for(int j = 0; j < canvasNumberOfLines; j++) {				
                 g.drawImage(img, i*RECT_WIDTH+MARGIN, j*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
             }
 
         }	
-        g.drawImage(imgCalda, MARGIN, MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
-        g.drawImage(imgCorpo, RECT_WIDTH+MARGIN, MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
-        g.drawImage(imgCabeca, 2*RECT_WIDTH+MARGIN, MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+        i=0;
+        for(int[] coord : cobrinha.get_coordenadas()){
+            if(i==0)
+                g.drawImage(imgCabeca, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            else if(i==cobrinha.get_coordenadas().size()-1)
+                g.drawImage(imgCalda, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            else
+                g.drawImage(imgCorpo, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            i++;
+        }
     }
     public CanvasJogo () {
          setBackground (Color.green);
          setSize(800, 600);
+         cobrinha=new Cobra();
+    }
+    
+    public CanvasJogo (Cobra cobrinha) {
+         setBackground (Color.green);
+         setSize(800, 600);
+         this.cobrinha = cobrinha;         
     }
 
     

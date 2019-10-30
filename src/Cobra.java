@@ -74,7 +74,6 @@ public class Cobra {
         coordenadas.add(new int[2]);
         coordenadas.get(coordenadas.size()-1)[0] = coordenadas.get(coordenadas.size()-2)[0];
         coordenadas.get(coordenadas.size()-1)[1] = coordenadas.get(coordenadas.size()-2)[1];
-        
     }
     
 }
