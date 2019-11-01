@@ -41,6 +41,24 @@ public class Cobra {
         }
     }
     
+    public char get_direcao(){
+        return direcao;
+    }
+    
+    public char get_direcao_calda(){
+        if(coordenadas.get(coordenadas.size()-1)[0]<coordenadas.get(coordenadas.size()-2)[0]){
+            return 'b';
+        }else if(coordenadas.get(coordenadas.size()-1)[0]>coordenadas.get(coordenadas.size()-2)[0]){
+            return 'c';
+        }else if(coordenadas.get(coordenadas.size()-1)[1]<coordenadas.get(coordenadas.size()-2)[1]){
+            return 'd';
+        }else if(coordenadas.get(coordenadas.size()-1)[1]>coordenadas.get(coordenadas.size()-2)[1]){
+            return 'e';
+        }else{
+            return direcao;
+        }
+    }
+    
     public void mover(){
         int[] aux = new int[2];
         int i;
