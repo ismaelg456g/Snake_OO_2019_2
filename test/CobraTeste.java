@@ -58,47 +58,54 @@ public class CobraTeste {
      
      @Test
      public void CobraMover() {
-         cobraTeste.mover('d');
+         cobraTeste.set_direcao('d');
+         cobraTeste.mover();
          assertEquals(0,coordenadas.get(2)[0]);
          assertEquals(1,coordenadas.get(2)[1]);
          assertEquals(0,coordenadas.get(1)[0]);
          assertEquals(2,coordenadas.get(1)[1]);
          assertEquals(0,coordenadas.get(0)[0]);
          assertEquals(3,coordenadas.get(0)[1]);
-         cobraTeste.mover('b');
+         cobraTeste.set_direcao('b');
+         cobraTeste.mover();
          assertEquals(0,coordenadas.get(2)[0]);
          assertEquals(2,coordenadas.get(2)[1]);
          assertEquals(0,coordenadas.get(1)[0]);
          assertEquals(3,coordenadas.get(1)[1]);
          assertEquals(1,coordenadas.get(0)[0]);
          assertEquals(3,coordenadas.get(0)[1]);
-         cobraTeste.mover('e');
+         cobraTeste.set_direcao('e');
+         cobraTeste.mover();
          assertEquals(0,coordenadas.get(2)[0]);
          assertEquals(3,coordenadas.get(2)[1]);
          assertEquals(1,coordenadas.get(1)[0]);
          assertEquals(3,coordenadas.get(1)[1]);
          assertEquals(1,coordenadas.get(0)[0]);
          assertEquals(2,coordenadas.get(0)[1]);
-         cobraTeste.mover('c');
+         cobraTeste.set_direcao('c');
+         cobraTeste.mover();
          assertEquals(1,coordenadas.get(2)[0]);
          assertEquals(3,coordenadas.get(2)[1]);
          assertEquals(1,coordenadas.get(1)[0]);
          assertEquals(2,coordenadas.get(1)[1]);
          assertEquals(0,coordenadas.get(0)[0]);
          assertEquals(2,coordenadas.get(0)[1]);
-         cobraTeste.mover('a');
-         assertEquals(1,coordenadas.get(2)[0]);
-         assertEquals(3,coordenadas.get(2)[1]);
-         assertEquals(1,coordenadas.get(1)[0]);
-         assertEquals(2,coordenadas.get(1)[1]);
-         assertEquals(0,coordenadas.get(0)[0]);
-         assertEquals(2,coordenadas.get(0)[1]);
-         cobraTeste.mover('b');
+         cobraTeste.set_direcao('b');
+         cobraTeste.mover();
          assertEquals(1,coordenadas.get(2)[0]);
          assertEquals(2,coordenadas.get(2)[1]);
          assertEquals(0,coordenadas.get(1)[0]);
          assertEquals(2,coordenadas.get(1)[1]);
          assertEquals(-1,coordenadas.get(0)[0]);
+         assertEquals(2,coordenadas.get(0)[1]);
+         
+         cobraTeste.set_direcao('a');
+         cobraTeste.mover();
+         assertEquals(0,coordenadas.get(2)[0]);
+         assertEquals(2,coordenadas.get(2)[1]);
+         assertEquals(-1,coordenadas.get(1)[0]);
+         assertEquals(2,coordenadas.get(1)[1]);
+         assertEquals(-2,coordenadas.get(0)[0]);
          assertEquals(2,coordenadas.get(0)[1]);
      }
      
@@ -113,7 +120,8 @@ public class CobraTeste {
          assertEquals(1,coordenadas.get(1)[1]);
          assertEquals(0,coordenadas.get(0)[0]);
          assertEquals(2,coordenadas.get(0)[1]);
-         cobraTeste.mover('d');
+         cobraTeste.set_direcao('d');
+         cobraTeste.mover();
          assertEquals(0,coordenadas.get(3)[0]);
          assertEquals(0,coordenadas.get(3)[1]);
          assertEquals(0,coordenadas.get(2)[0]);

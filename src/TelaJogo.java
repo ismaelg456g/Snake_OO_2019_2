@@ -1,6 +1,8 @@
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +18,7 @@ public class TelaJogo extends javax.swing.JFrame {
     private Cobra cobrinha;
     private CanvasJogo canvas;
     threadCanvas tCanvas;
+    KeyListener controlador;
     
     // * Creates new form TelaJogo
      
@@ -25,9 +28,10 @@ public class TelaJogo extends javax.swing.JFrame {
         initComponents();
         jPanel1.add(canvas);
         setTitle("Snake");
-        tCanvas = new threadCanvas(canvas);
+        tCanvas = new threadCanvas(canvas, cobrinha);
         tCanvas.start();
-        
+        controlador= new Controles(cobrinha);
+        addKeyListener(controlador);
     }
 
     /**
