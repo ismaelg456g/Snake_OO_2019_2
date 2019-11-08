@@ -124,4 +124,7 @@ public class Cobra {
         coordenadas.get(coordenadas.size()-1)[1] = coordenadas.get(coordenadas.size()-2)[1];
     }
     
+    public int[] getCoordCabeca(){
+        return coordenadas.get(0);
+    }
 }

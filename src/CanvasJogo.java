@@ -31,6 +31,7 @@ public class CanvasJogo extends Canvas {
     private ImageIcon iconCaldaB;
     private ImageIcon iconCaldaE;
     private ImageIcon iconCaldaC;
+    private ImageIcon iconFrutaSim;
     
     private final Image imgTerra;
     private final Image imgCabeca;
@@ -42,8 +43,19 @@ public class CanvasJogo extends Canvas {
     private final Image imgCaldaB;
     private final Image imgCaldaE;
     private final Image imgCaldaC;
+    private final Image imgFrutaSim;
     
    public void paint(Graphics g) {
+        desenhaCobra(g);
+    }
+   public void paint(Graphics g, Fruta fruta_a) {
+        desenhaCobra(g);
+        g.drawImage(imgFrutaSim, fruta_a.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta_a.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+        
+    }
+   
+   
+    public void desenhaCobra(Graphics g){
         int i=0;
         
         i=0;
@@ -86,8 +98,6 @@ public class CanvasJogo extends Canvas {
         if(cobrinha.get_atras_calda()[0]!=-1 || cobrinha.get_atras_calda()[1]!=-1 ){
             g.drawImage(imgTerra, cobrinha.get_atras_calda()[1]*RECT_WIDTH+MARGIN, cobrinha.get_atras_calda()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
         }
-        
-        
     }
     public CanvasJogo () {
          setBackground (Color.green);
@@ -105,6 +115,7 @@ public class CanvasJogo extends Canvas {
         iconCaldaB = new ImageIcon("img/caldaB.jpg");
         iconCaldaE = new ImageIcon("img/caldaE.jpg");
         iconCaldaC = new ImageIcon("img/caldaC.jpg");
+        iconFrutaSim = new ImageIcon("img/frutaSim.jpg");
         // Prepare an Image object to be used by drawImage()
         imgTerra = icon.getImage();
         imgCabeca = iconCabeca.getImage();
@@ -116,6 +127,7 @@ public class CanvasJogo extends Canvas {
         imgCaldaB = iconCaldaB.getImage();
         imgCaldaE = iconCaldaE.getImage();
         imgCaldaC = iconCaldaC.getImage();
+        imgFrutaSim = iconFrutaSim.getImage();
         
     }
     
@@ -135,6 +147,7 @@ public class CanvasJogo extends Canvas {
         iconCaldaB = new ImageIcon("img/caldaB.jpg");
         iconCaldaE = new ImageIcon("img/caldaE.jpg");
         iconCaldaC = new ImageIcon("img/caldaC.jpg");
+        iconFrutaSim = new ImageIcon("img/frutaSim.jpg");
         // Prepare an Image object to be used by drawImage()
         imgTerra = icon.getImage();
         imgCabeca = iconCabeca.getImage();
@@ -146,6 +159,7 @@ public class CanvasJogo extends Canvas {
         imgCaldaB = iconCaldaB.getImage();
         imgCaldaE = iconCaldaE.getImage();
         imgCaldaC = iconCaldaC.getImage();	
+        imgFrutaSim = iconFrutaSim.getImage();
     }
     
     public void init(Graphics g){
