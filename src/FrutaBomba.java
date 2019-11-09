@@ -9,7 +9,9 @@
  * @author hercules
  */
 public class FrutaBomba extends Fruta{
-    private char tipo = 'b';
+    public FrutaBomba(){
+        tipo = 'b';
+    }
     @Override
     public void colide(Cobra cobrinha){
         cobrinha.morre();

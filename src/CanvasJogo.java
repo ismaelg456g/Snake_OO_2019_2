@@ -75,8 +75,14 @@ public class CanvasJogo extends Canvas {
     }
     
     public void desenhaFruta(Graphics g, Fruta fruta){
+        
+                System.out.println("oi "+fruta.get_tipo());
+                System.out.println(fruta.get_coordenadas()[0]+"  "+fruta.get_coordenadas()[1]);
         switch(fruta.get_tipo()){
             case 's':
+                
+                System.out.println("aqui");
+                System.out.println(fruta.get_coordenadas()[0]+"  "+fruta.get_coordenadas()[1]);
                 g.drawImage(imgFrutaSim, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
             case 'b':

@@ -55,58 +55,31 @@ public class threadCanvas extends Thread {
                             }
                             else
                                 canvas.paint(canvas.getGraphics());
-                        }else{
-                            canvas.gameOver(canvas.getGraphics());
                         }
 		}
-                
+                canvas.gameOver(canvas.getGraphics());
 	}
         
         private void geradorFrutas(){
-            int aleatorio = gerador.nextInt(100);
-            
             if(fruta_a==null && fruta_b == null){
-                fruta_a = new FrutaSimples();
+                fruta_a = geraFrutaAleaDeVdd();
                 fruta_a.geraPos(25, 25);
             }else if(fruta_a!=null && fruta_b==null){
-                switch(aleatorio){
-                    case 0:
-                        fruta_b = new FrutaSimples();
-                        do{
-                            fruta_b.geraPos(25, 25);
-                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
-                        break;
-                    case 25:
-                        fruta_b = new FrutaBomba();
-                        do{
-                            fruta_b.geraPos(25, 25);
-                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
-                        break;
-                    case 50:
-                        fruta_b = new FrutaDiminuta();
-                        do{
-                            fruta_b.geraPos(25, 25);
-                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
-                        break;
-                    case 75:
-                        fruta_b = new FrutaGrande();
-                        do{
-                            fruta_b.geraPos(25, 25);
-                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
-                        break;
-                }
-            }else if(fruta_a==null && fruta_b!=null){
-                if(gerador.nextInt(20)==0){
-                    fruta_a = new FrutaSimples();
+                fruta_b = geraFrutaAlea();
+                if(fruta_b!=null){
                     do{
-                        fruta_a.geraPos(25, 25);
+                        fruta_b.geraPos(25, 25);
                     }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
                             fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
                 }
+            }else if(fruta_a==null && fruta_b!=null){
+                    fruta_a = geraFrutaAlea();
+                    if(fruta_a!=null){
+                        do{
+                            fruta_a.geraPos(25, 25);
+                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
+                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
+                    }
             }
         }
         
@@ -114,5 +87,44 @@ public class threadCanvas extends Thread {
             if(cobrinha.getCoordCabeca()[0]<0 || cobrinha.getCoordCabeca()[1]<0 || cobrinha.getCoordCabeca()[0]>=25 || cobrinha.getCoordCabeca()[1]>=25){
                 cobrinha.morre();
             }
+        }
+        
+        private Fruta geraFrutaAlea(){
+            int aleatorio = gerador.nextInt(100);
+            Fruta fruta=null;
+            switch(aleatorio){
+                    case 0:
+                        fruta = new FrutaSimples();
+                        break;
+                    case 25:
+                        fruta = new FrutaBomba();
+                        break;
+                    case 50:
+                        fruta = new FrutaDiminuta();
+                        break;
+                    case 75:
+                        fruta = new FrutaGrande();
+                        break;
+                }
+            return fruta;
+        }
+        private Fruta geraFrutaAleaDeVdd(){
+            int aleatorio = gerador.nextInt(4);
+            Fruta fruta=null;
+            switch(aleatorio){
+                    case 0:
+                        fruta = new FrutaSimples();
+                        break;
+                    case 1:
+                        fruta = new FrutaBomba();
+                        break;
+                    case 2:
+                        fruta = new FrutaDiminuta();
+                        break;
+                    case 3:
+                        fruta = new FrutaGrande();
+                        break;
+                }
+            return fruta;
         }
 }

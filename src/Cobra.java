@@ -127,7 +127,8 @@ public class Cobra {
     }
     
     public void diminui(){
-        for(int i=3; i<coordenadas.size()-1;i++){
+        int aux = coordenadas.size();
+        for(int i=3; i<aux;i++){
             coordenadas.remove(3);
         }
     }
