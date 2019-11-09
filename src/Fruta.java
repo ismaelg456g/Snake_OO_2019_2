@@ -3,6 +3,7 @@ import java.util.Random;
 public abstract class Fruta {
     private int coordenadas[];
     private Random gerador;
+    private char tipo;
     
     public Fruta(){
         coordenadas = new int[2];
@@ -28,5 +29,9 @@ public abstract class Fruta {
     
     public int[] get_coordenadas(){
         return coordenadas;
+    }
+    
+    public char get_tipo(){
+        return tipo;
     }
 }

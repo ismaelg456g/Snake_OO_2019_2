@@ -32,6 +32,9 @@ public class CanvasJogo extends Canvas {
     private ImageIcon iconCaldaE;
     private ImageIcon iconCaldaC;
     private ImageIcon iconFrutaSim;
+    private ImageIcon iconFrutaBomba;
+    private ImageIcon iconFrutaGrande;
+    private ImageIcon iconFrutaDiminuta;
     private ImageIcon iconGameOver;
     private ImageIcon iconMorte;
     
@@ -46,26 +49,46 @@ public class CanvasJogo extends Canvas {
     private final Image imgCaldaE;
     private final Image imgCaldaC;
     private final Image imgFrutaSim;
+    private final Image imgFrutaBomba;
+    private final Image imgFrutaGrande;
+    private final Image imgFrutaDiminuta;
     private final Image imgGameOver;
     private final Image imgMorte;
     
    public void paint(Graphics g) {
         desenhaCobra(g);
     }
-   public void paint(Graphics g, Fruta fruta_a) {
+   public void paint(Graphics g, Fruta fruta) {
         desenhaCobra(g);
-        g.drawImage(imgFrutaSim, fruta_a.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta_a.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+        desenhaFruta(g, fruta);
         
     }
    public void paint(Graphics g, Fruta fruta_a, Fruta fruta_b) {
         desenhaCobra(g);
-        g.drawImage(imgFrutaSim, fruta_a.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta_a.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
-        g.drawImage(imgFrutaSim, fruta_b.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta_b.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+        desenhaFruta(g, fruta_a);
+        desenhaFruta(g, fruta_b);
         
     }
     public void gameOver(Graphics g){
          g.drawImage(imgGameOver, 3*RECT_WIDTH+MARGIN, 8*RECT_HEIGHT+MARGIN, 20*RECT_WIDTH, 5*RECT_HEIGHT, null);
          g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH+MARGIN, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+    }
+    
+    public void desenhaFruta(Graphics g, Fruta fruta){
+        switch(fruta.get_tipo()){
+            case 's':
+                g.drawImage(imgFrutaSim, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                break;
+            case 'b':
+                g.drawImage(imgFrutaBomba, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                break;
+            case 'g':
+                g.drawImage(imgFrutaGrande, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                break;
+            case 'd':
+                g.drawImage(imgFrutaDiminuta, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                break;
+        }
     }
    
     public void desenhaCobra(Graphics g){
@@ -130,6 +153,9 @@ public class CanvasJogo extends Canvas {
         iconCaldaE = new ImageIcon("img/caldaE.jpg");
         iconCaldaC = new ImageIcon("img/caldaC.jpg");
         iconFrutaSim = new ImageIcon("img/frutaSim.jpg");
+        iconFrutaBomba = new ImageIcon("img/frutaBomba.jpg");
+        iconFrutaGrande = new ImageIcon("img/frutaGrande.jpg");
+        iconFrutaDiminuta = new ImageIcon("img/frutaDiminuta.jpg");
         iconGameOver = new ImageIcon("img/gameover.jpg");
         iconMorte = new ImageIcon("img/morte.jpg");
         // Prepare an Image object to be used by drawImage()
@@ -144,6 +170,9 @@ public class CanvasJogo extends Canvas {
         imgCaldaE = iconCaldaE.getImage();
         imgCaldaC = iconCaldaC.getImage();
         imgFrutaSim = iconFrutaSim.getImage();
+        imgFrutaBomba = iconFrutaBomba.getImage();
+        imgFrutaGrande = iconFrutaGrande.getImage();
+        imgFrutaDiminuta = iconFrutaDiminuta.getImage();
         imgGameOver = iconGameOver.getImage();
         imgMorte = iconMorte.getImage();
         
@@ -166,6 +195,9 @@ public class CanvasJogo extends Canvas {
         iconCaldaE = new ImageIcon("img/caldaE.jpg");
         iconCaldaC = new ImageIcon("img/caldaC.jpg");
         iconFrutaSim = new ImageIcon("img/frutaSim.jpg");
+        iconFrutaBomba = new ImageIcon("img/frutaBomba.jpg");
+        iconFrutaGrande = new ImageIcon("img/frutaGrande.jpg");
+        iconFrutaDiminuta = new ImageIcon("img/frutaDiminuta.jpg");
         iconGameOver = new ImageIcon("img/gameover.jpg");
         iconMorte = new ImageIcon("img/morte.jpg");
         // Prepare an Image object to be used by drawImage()
@@ -178,8 +210,11 @@ public class CanvasJogo extends Canvas {
         imgCalda = iconCalda.getImage();
         imgCaldaB = iconCaldaB.getImage();
         imgCaldaE = iconCaldaE.getImage();
-        imgCaldaC = iconCaldaC.getImage();	
+        imgCaldaC = iconCaldaC.getImage();
         imgFrutaSim = iconFrutaSim.getImage();
+        imgFrutaBomba = iconFrutaBomba.getImage();
+        imgFrutaGrande = iconFrutaGrande.getImage();
+        imgFrutaDiminuta = iconFrutaDiminuta.getImage();
         imgGameOver = iconGameOver.getImage();
         imgMorte = iconMorte.getImage();
     }

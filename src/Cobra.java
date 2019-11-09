@@ -10,6 +10,7 @@ public class Cobra {
     private List<int[]> coordenadas;
     private int[] atras_calda;
     private char direcao;
+    private boolean morri;
     
     public Cobra(){
         atras_calda = new int[2];
@@ -26,6 +27,7 @@ public class Cobra {
         coordenadas.get(2)[0]=0;
         coordenadas.get(2)[1]=0;
         direcao = 'd';
+        morri = false;
     }
     
     public List<int[]> get_coordenadas(){
@@ -124,7 +126,21 @@ public class Cobra {
         coordenadas.get(coordenadas.size()-1)[1] = coordenadas.get(coordenadas.size()-2)[1];
     }
     
+    public void diminui(){
+        for(int i=3; i<coordenadas.size()-1;i++){
+            coordenadas.remove(3);
+        }
+    }
+    
     public int[] getCoordCabeca(){
         return coordenadas.get(0);
+    }
+    
+    public void morre(){
+        morri = true;
+    }
+    
+    public boolean checa_morte(){
+        return morri;
     }
 }

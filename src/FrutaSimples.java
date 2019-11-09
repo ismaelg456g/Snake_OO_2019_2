@@ -9,10 +9,9 @@
  * @author hercules
  */
 public class FrutaSimples extends Fruta{
+    private char tipo = 's';
     @Override
     public void colide(Cobra cobrinha){
         cobrinha.aumentaTamanho();
     }
-    
-    
 }
