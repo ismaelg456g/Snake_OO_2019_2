@@ -11,6 +11,7 @@ public class Cobra {
     private int[] atras_calda;
     private char direcao;
     private boolean morri;
+    private boolean diminuiu;
     
     public Cobra(){
         atras_calda = new int[2];
@@ -28,6 +29,7 @@ public class Cobra {
         coordenadas.get(2)[1]=0;
         direcao = 'd';
         morri = false;
+        diminuiu = true;
     }
     
     public List<int[]> get_coordenadas(){
@@ -131,6 +133,15 @@ public class Cobra {
         for(int i=3; i<aux;i++){
             coordenadas.remove(3);
         }
+        diminuiu=true;
+    }
+    
+    public void voltaDiminuiu(){
+        diminuiu = false;
+    }
+    
+    public boolean getDiminuiu(){
+        return diminuiu;
     }
     
     public int[] getCoordCabeca(){
@@ -143,5 +154,22 @@ public class Cobra {
     
     public boolean checa_morte(){
         return morri;
+    }
+    
+    public boolean checaColisao(){
+        boolean aux=true;
+        for(int[] a: coordenadas){
+            if(aux)
+                aux=false;
+            else if(getCoordCabeca()[0]==a[0] && getCoordCabeca()[1]==a[1]){
+                morre();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean atravessaParede(){
+        return false;
     }
 }

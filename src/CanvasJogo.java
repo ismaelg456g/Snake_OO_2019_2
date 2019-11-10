@@ -20,6 +20,7 @@ public class CanvasJogo extends Canvas {
     private int canvasNumberOfLines = 25;
     
     private Cobra cobrinha;
+    private Barreira paredes;
     
     private ImageIcon icon;
     private ImageIcon iconCabeca;
@@ -38,22 +39,22 @@ public class CanvasJogo extends Canvas {
     private ImageIcon iconGameOver;
     private ImageIcon iconMorte;
     
-    private final Image imgTerra;
-    private final Image imgCabeca;
-    private final Image imgCabecaB;
-    private final Image imgCabecaE;
-    private final Image imgCabecaC;
-    private final Image imgCorpo;
-    private final Image imgCalda;
-    private final Image imgCaldaB;
-    private final Image imgCaldaE;
-    private final Image imgCaldaC;
-    private final Image imgFrutaSim;
-    private final Image imgFrutaBomba;
-    private final Image imgFrutaGrande;
-    private final Image imgFrutaDiminuta;
-    private final Image imgGameOver;
-    private final Image imgMorte;
+    private Image imgTerra;
+    private Image imgCabeca;
+    private Image imgCabecaB;
+    private Image imgCabecaE;
+    private Image imgCabecaC;
+    private Image imgCorpo;
+    private Image imgCalda;
+    private Image imgCaldaB;
+    private Image imgCaldaE;
+    private Image imgCaldaC;
+    private Image imgFrutaSim;
+    private Image imgFrutaBomba;
+    private Image imgFrutaGrande;
+    private Image imgFrutaDiminuta;
+    private Image imgGameOver;
+    private Image imgMorte;
     
    public void paint(Graphics g) {
         desenhaCobra(g);
@@ -74,15 +75,15 @@ public class CanvasJogo extends Canvas {
          g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH+MARGIN, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
     }
     
+    public void desenhaBarreira(Graphics g){
+        for(int[] a: paredes.get_coordenadas()){
+            g.drawImage(imgCorpo, a[1]*RECT_WIDTH+MARGIN, a[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+        }
+    }
+    
     public void desenhaFruta(Graphics g, Fruta fruta){
-        
-                System.out.println("oi "+fruta.get_tipo());
-                System.out.println(fruta.get_coordenadas()[0]+"  "+fruta.get_coordenadas()[1]);
         switch(fruta.get_tipo()){
             case 's':
-                
-                System.out.println("aqui");
-                System.out.println(fruta.get_coordenadas()[0]+"  "+fruta.get_coordenadas()[1]);
                 g.drawImage(imgFrutaSim, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
             case 'b':
@@ -143,52 +144,36 @@ public class CanvasJogo extends Canvas {
         }
     }
     public CanvasJogo () {
-         setBackground (Color.green);
-         setSize(800, 600);
-         cobrinha=new Cobra();
+//        setBackground (Color.green);
+        setSize(800, 600);
+        cobrinha=new Cobra();
          
-        // Prepare an ImageIcon
-        icon = new ImageIcon("img/terra.jpg");
-        iconCabeca = new ImageIcon("img/cabeca.jpg");
-        iconCabecaB = new ImageIcon("img/cabecaB.jpg");
-        iconCabecaE = new ImageIcon("img/cabecaE.jpg");
-        iconCabecaC = new ImageIcon("img/cabecaC.jpg");
-        iconCorpo = new ImageIcon("img/corpo.jpg");
-        iconCalda = new ImageIcon("img/calda.jpg");
-        iconCaldaB = new ImageIcon("img/caldaB.jpg");
-        iconCaldaE = new ImageIcon("img/caldaE.jpg");
-        iconCaldaC = new ImageIcon("img/caldaC.jpg");
-        iconFrutaSim = new ImageIcon("img/frutaSim.jpg");
-        iconFrutaBomba = new ImageIcon("img/frutaBomba.jpg");
-        iconFrutaGrande = new ImageIcon("img/frutaGrande.jpg");
-        iconFrutaDiminuta = new ImageIcon("img/frutaDiminuta.jpg");
-        iconGameOver = new ImageIcon("img/gameover.jpg");
-        iconMorte = new ImageIcon("img/morte.jpg");
-        // Prepare an Image object to be used by drawImage()
-        imgTerra = icon.getImage();
-        imgCabeca = iconCabeca.getImage();
-        imgCabecaB = iconCabecaB.getImage();
-        imgCabecaE = iconCabecaE.getImage();
-        imgCabecaC = iconCabecaC.getImage();
-        imgCorpo = iconCorpo.getImage();
-        imgCalda = iconCalda.getImage();
-        imgCaldaB = iconCaldaB.getImage();
-        imgCaldaE = iconCaldaE.getImage();
-        imgCaldaC = iconCaldaC.getImage();
-        imgFrutaSim = iconFrutaSim.getImage();
-        imgFrutaBomba = iconFrutaBomba.getImage();
-        imgFrutaGrande = iconFrutaGrande.getImage();
-        imgFrutaDiminuta = iconFrutaDiminuta.getImage();
-        imgGameOver = iconGameOver.getImage();
-        imgMorte = iconMorte.getImage();
+        initImg();
         
+        paredes = new Barreira();
     }
     
     public CanvasJogo (Cobra cobrinha) {
-         setBackground (Color.green);
-         setSize(800, 600);
-         this.cobrinha = cobrinha;         
+//        setBackground (Color.green);
+        setSize(800, 600);
+        this.cobrinha = cobrinha;         
          
+        initImg();
+        
+        paredes = new Barreira();
+    }
+    
+    public CanvasJogo (Cobra cobrinha, Barreira paredes) {
+//        setBackground (Color.green);
+        setSize(800, 600);
+        this.cobrinha = cobrinha;         
+        this.paredes = paredes;
+         
+        initImg();
+        
+    }
+    
+    private void initImg(){
         // Prepare an ImageIcon
         icon = new ImageIcon("img/terra.jpg");
         iconCabeca = new ImageIcon("img/cabeca.jpg");
@@ -231,6 +216,7 @@ public class CanvasJogo extends Canvas {
                     g.drawImage(imgTerra, i*RECT_WIDTH+MARGIN, j*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 }
             }
+        desenhaBarreira(g);
     }
     
     public int getCanvasNumberOfRows() {

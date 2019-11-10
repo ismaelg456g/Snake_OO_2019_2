@@ -4,6 +4,7 @@ import java.util.Random;
 public class threadCanvas extends Thread {
 	private CanvasJogo canvas;
         private Cobra cobrinha;
+        private Barreira paredes;
         Fruta fruta_a;
         Fruta fruta_b;
         private Random gerador;
@@ -12,23 +13,26 @@ public class threadCanvas extends Thread {
 		this.canvas = canvas;
                 this.cobrinha = cobrinha;
                 gerador = new Random();
+                paredes = new Barreira();
 	}
 	
 	@Override
 	public void run() {
-            boolean aux=true;
 		while(!cobrinha.checa_morte()) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-                        if(aux){
-                            aux = false;
+                        if(cobrinha.getDiminuiu()){
+                            cobrinha.voltaDiminuiu();
                             canvas.init(canvas.getGraphics());
                         }
                         cobrinha.mover();
+                        cobrinha.checaColisao();
                         checaColisao();
+                        if(cobrinha.atravessaParede())
+                            paredes.checaColisao(cobrinha);
                         geradorFrutas();
                         if(!cobrinha.checa_morte()){
                             if(fruta_a!=null && fruta_b==null){
