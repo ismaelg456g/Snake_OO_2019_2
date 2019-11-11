@@ -8,13 +8,9 @@
  *
  * @author hercules
  */
-public class FrutaSimples extends Fruta{
-    public FrutaSimples(){
-        tipo = 's';
-    }
+public class Star extends Cobra{
     @Override
-    public void colide(Cobra cobrinha){
-        cobrinha.aumentaTamanho();
-        cobrinha.incrementaPlacar();
+    public void incrementaPlacar(){
+        placar+=2;
     }
 }

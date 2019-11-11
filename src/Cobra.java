@@ -12,6 +12,7 @@ public class Cobra {
     private char direcao;
     private boolean morri;
     private boolean diminuiu;
+    protected int placar;
     
     public Cobra(){
         atras_calda = new int[2];
@@ -30,6 +31,7 @@ public class Cobra {
         direcao = 'd';
         morri = false;
         diminuiu = true;
+        placar=0;
     }
     
     public List<int[]> get_coordenadas(){
@@ -171,5 +173,12 @@ public class Cobra {
     
     public boolean atravessaParede(){
         return false;
+    }
+    
+    public void incrementaPlacar(){
+        placar++;
+    }
+    public int getPlacar(){
+        return placar;
     }
 }

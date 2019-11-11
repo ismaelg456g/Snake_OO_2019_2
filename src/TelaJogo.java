@@ -33,6 +33,18 @@ public class TelaJogo extends javax.swing.JFrame {
         controlador= new Controles(cobrinha);
         addKeyListener(controlador);
     }
+    
+    public TelaJogo(Cobra cobrinha) {
+        this.cobrinha = cobrinha;
+        canvas = new CanvasJogo(cobrinha);
+        initComponents();
+        jPanel1.add(canvas);
+        setTitle("Snake");
+        tCanvas = new threadCanvas(canvas, cobrinha);
+        tCanvas.start();
+        controlador= new Controles(cobrinha);
+        addKeyListener(controlador);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

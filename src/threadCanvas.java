@@ -18,47 +18,54 @@ public class threadCanvas extends Thread {
 	
 	@Override
 	public void run() {
+                int contSleep=0;
 		while(!cobrinha.checa_morte()) {
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-                        if(cobrinha.getDiminuiu()){
-                            cobrinha.voltaDiminuiu();
-                            canvas.init(canvas.getGraphics());
-                        }
-                        cobrinha.mover();
-                        cobrinha.checaColisao();
-                        checaColisao();
-                        if(!cobrinha.atravessaParede())
-                            paredes.checaColisao(cobrinha);
-                        geradorFrutas();
-                        if(!cobrinha.checa_morte()){
-                            if(fruta_a!=null && fruta_b==null){
-                                if(fruta_a.checaColisao(cobrinha)){
-                                    fruta_a=null;
-                                    canvas.paint(canvas.getGraphics());
-                                }else
-                                    canvas.paint(canvas.getGraphics(),fruta_a);
-                            }else if(fruta_a==null && fruta_b!=null){
-                                if(fruta_b.checaColisao(cobrinha)){
-                                    fruta_b=null;
-                                    canvas.paint(canvas.getGraphics());
-                                }else
-                                    canvas.paint(canvas.getGraphics(),fruta_b);
-                            }else if(fruta_a!=null && fruta_b!=null){
-                                if(fruta_b.checaColisao(cobrinha)){
-                                    fruta_b=null;
-                                    canvas.paint(canvas.getGraphics(), fruta_a);
-                                }else if(fruta_a.checaColisao(cobrinha)){
-                                    fruta_a=null;
-                                    canvas.paint(canvas.getGraphics(), fruta_b);
-                                }else
-                                    canvas.paint(canvas.getGraphics(),fruta_a, fruta_b);
+                        if(contSleep==100){
+                            if(cobrinha.getDiminuiu()){
+                                cobrinha.voltaDiminuiu();
+                                canvas.init(canvas.getGraphics());
                             }
-                            else
-                                canvas.paint(canvas.getGraphics());
+                            cobrinha.mover();
+                            cobrinha.checaColisao();
+                            checaColisao();
+                            if(!cobrinha.atravessaParede())
+                                paredes.checaColisao(cobrinha);
+                            destroiFrutas();
+                            geradorFrutas();
+                            if(!cobrinha.checa_morte()){
+                                if(fruta_a!=null && fruta_b==null){
+                                    if(fruta_a.checaColisao(cobrinha)){
+                                        fruta_a=null;
+                                        canvas.paint(canvas.getGraphics());
+                                    }else
+                                        canvas.paint(canvas.getGraphics(),fruta_a);
+                                }else if(fruta_a==null && fruta_b!=null){
+                                    if(fruta_b.checaColisao(cobrinha)){
+                                        fruta_b=null;
+                                        canvas.paint(canvas.getGraphics());
+                                    }else
+                                        canvas.paint(canvas.getGraphics(),fruta_b);
+                                }else if(fruta_a!=null && fruta_b!=null){
+                                    if(fruta_b.checaColisao(cobrinha)){
+                                        fruta_b=null;
+                                        canvas.paint(canvas.getGraphics(), fruta_a);
+                                    }else if(fruta_a.checaColisao(cobrinha)){
+                                        fruta_a=null;
+                                        canvas.paint(canvas.getGraphics(), fruta_b);
+                                    }else
+                                        canvas.paint(canvas.getGraphics(),fruta_a, fruta_b);
+                                }
+                                else
+                                    canvas.paint(canvas.getGraphics());
+                            }
+                            contSleep=0;
+                        }else{
+                            contSleep++;
                         }
 		}
                 canvas.gameOver(canvas.getGraphics());
@@ -67,22 +74,16 @@ public class threadCanvas extends Thread {
         private void geradorFrutas(){
             if(fruta_a==null && fruta_b == null){
                 fruta_a = geraFrutaAleaDeVdd();
-                fruta_a.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
+                geraPosFruta(fruta_a);
             }else if(fruta_a!=null && fruta_b==null){
                 fruta_b = geraFrutaAlea();
                 if(fruta_b!=null){
-                    do{
-                        fruta_b.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
-                    }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                            fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
+                    geraPosFruta(fruta_b, fruta_a);
                 }
             }else if(fruta_a==null && fruta_b!=null){
                     fruta_a = geraFrutaAlea();
                     if(fruta_a!=null){
-                        do{
-                            fruta_a.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
-                        }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
-                                fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
+                        geraPosFruta(fruta_a, fruta_b);
                     }
             }
         }
@@ -130,5 +131,57 @@ public class threadCanvas extends Thread {
                         break;
                 }
             return fruta;
+        }
+        private void destroiFrutas(){
+            if(fruta_a!=null){
+                fruta_a.decrementaContador();
+                if(fruta_a.getContador()==0){
+                    fruta_a=null;
+                    canvas.init(canvas.getGraphics());
+                }
+            }
+            
+            if(fruta_b!=null){
+                fruta_b.decrementaContador();
+                if(fruta_b.getContador()==0){
+                    fruta_b=null;
+                    canvas.init(canvas.getGraphics());
+                }
+            }
+        }
+        
+        public void geraPosFruta(Fruta fruta){
+            do{
+                fruta.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
+            }while(checaFrutaBarreira(fruta) || checaFrutaCobra(fruta));
+        }
+        public void geraPosFruta(Fruta fruta, Fruta outraFruta){
+            do{
+                fruta.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
+            }while(checaFrutaBarreira(fruta) || checaFrutaCobra(fruta) || checaFrutaFruta(fruta, outraFruta));
+        }
+        private boolean checaFrutaBarreira(Fruta fruta){
+            for(int [] a: paredes.get_coordenadas()){
+                if(fruta.get_coordenadas()[0]==a[0] && fruta.get_coordenadas()[1]==a[1])
+                    return true;
+            }
+            return false;
+        }
+        private boolean checaFrutaFruta(Fruta fruta1, Fruta fruta2){
+            if(fruta2==null)
+                return false;
+            else{
+                    if(fruta1.get_coordenadas()[0]==fruta2.get_coordenadas()[0]
+                        && fruta1.get_coordenadas()[1]==fruta2.get_coordenadas()[1])
+                        return true;
+            }
+            return false;
+        }
+        private boolean checaFrutaCobra(Fruta fruta){
+            for(int [] a: cobrinha.get_coordenadas()){
+                if(fruta.get_coordenadas()[0]==a[0] && fruta.get_coordenadas()[1]==a[1])
+                    return true;
+            }
+            return false;
         }
 }

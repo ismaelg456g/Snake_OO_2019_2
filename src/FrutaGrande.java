@@ -15,5 +15,7 @@ public class FrutaGrande extends Fruta{
     @Override
     public void colide(Cobra cobrinha){
         cobrinha.aumentaTamanho();
+        cobrinha.incrementaPlacar();
+        cobrinha.incrementaPlacar();
     }
 }

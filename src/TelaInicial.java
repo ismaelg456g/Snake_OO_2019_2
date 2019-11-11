@@ -30,6 +30,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonJogar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jButtonKitty = new javax.swing.JButton();
+        jButtonStar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(300, 50));
@@ -54,6 +56,20 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jButtonKitty.setText("Modo Kitty");
+        jButtonKitty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKittysair(evt);
+            }
+        });
+
+        jButtonStar.setText("Modo Star");
+        jButtonStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,10 +78,12 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonStar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonKitty, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonJogar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -74,11 +92,15 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jButtonJogar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonKitty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonStar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -97,6 +119,26 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jogar
+
+    private void jButtonKittysair(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKittysair
+        dispose();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaJogo(new Kitty()).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButtonKittysair
+
+    private void jButtonStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStarActionPerformed
+        dispose();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaJogo(new Star()).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButtonStarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,7 +177,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonJogar;
+    private javax.swing.JButton jButtonKitty;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonStar;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

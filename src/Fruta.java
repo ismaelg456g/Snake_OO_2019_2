@@ -4,12 +4,14 @@ public abstract class Fruta {
     private int coordenadas[];
     private Random gerador;
     protected char tipo;
+    private int contador;
     
     public Fruta(){
         coordenadas = new int[2];
         coordenadas[0]=0;
         coordenadas[1]=0;
         gerador = new Random();
+        contador = 100;
     }
     
     public boolean checaColisao(Cobra cobrinha){
@@ -33,5 +35,11 @@ public abstract class Fruta {
     
     public char get_tipo(){
         return tipo;
+    }
+    public void decrementaContador(){
+        contador--;
+    }
+    public int getContador(){
+        return contador;
     }
 }

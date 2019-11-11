@@ -48,6 +48,7 @@ public class CanvasJogo extends Canvas {
     private ImageIcon icon7;
     private ImageIcon icon8;
     private ImageIcon icon9;
+    private ImageIcon iconParede;
     
     private Image imgTerra;
     private Image imgCabeca;
@@ -75,21 +76,24 @@ public class CanvasJogo extends Canvas {
     private Image img7;
     private Image img8;
     private Image img9;
+    private Image imgParede;
     
    public void paint(Graphics g) {
         desenhaCobra(g);
+        desenhaPlacar(g, cobrinha.getPlacar());
     }
    public void paint(Graphics g, Fruta fruta) {
         desenhaCobra(g);
         desenhaFruta(g, fruta);
-        
+        desenhaPlacar(g, cobrinha.getPlacar());
     }
    public void paint(Graphics g, Fruta fruta_a, Fruta fruta_b) {
         desenhaCobra(g);
         desenhaFruta(g, fruta_a);
         desenhaFruta(g, fruta_b);
-        
+        desenhaPlacar(g, cobrinha.getPlacar());
     }
+   
     public void gameOver(Graphics g){
          g.drawImage(imgGameOver, 3*RECT_WIDTH, 8*RECT_HEIGHT+MARGIN, 20*RECT_WIDTH, 5*RECT_HEIGHT, null);
          g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
@@ -97,7 +101,7 @@ public class CanvasJogo extends Canvas {
     
     public void desenhaBarreira(Graphics g){
         for(int[] a: paredes.get_coordenadas()){
-            g.drawImage(imgCorpo, a[1]*RECT_WIDTH, a[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            g.drawImage(imgParede, a[1]*RECT_WIDTH, a[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
         }
     }
     
@@ -221,6 +225,7 @@ public class CanvasJogo extends Canvas {
         icon7 = new ImageIcon("img/7.jpg");
         icon8 = new ImageIcon("img/8.jpg");
         icon9 = new ImageIcon("img/9.jpg");
+        iconParede = new ImageIcon("img/parede.jpg");
         // Prepare an Image object to be used by drawImage()
         imgTerra = icon.getImage();
         imgCabeca = iconCabeca.getImage();
@@ -248,6 +253,7 @@ public class CanvasJogo extends Canvas {
         img7 = icon7.getImage();
         img8 = icon8.getImage();
         img9 = icon9.getImage();
+        imgParede = iconParede.getImage();
     }
     
     public void init(Graphics g){
@@ -257,7 +263,7 @@ public class CanvasJogo extends Canvas {
                 }
             }
         desenhaBarreira(g);
-        desenhaPlacar(g, 0);
+        desenhaPlacar(g, cobrinha.getPlacar());
     }
     public void desenhaPlacar(Graphics g, int pontos){
         int i=0;
