@@ -31,7 +31,7 @@ public class threadCanvas extends Thread {
                         cobrinha.mover();
                         cobrinha.checaColisao();
                         checaColisao();
-                        if(cobrinha.atravessaParede())
+                        if(!cobrinha.atravessaParede())
                             paredes.checaColisao(cobrinha);
                         geradorFrutas();
                         if(!cobrinha.checa_morte()){
@@ -67,12 +67,12 @@ public class threadCanvas extends Thread {
         private void geradorFrutas(){
             if(fruta_a==null && fruta_b == null){
                 fruta_a = geraFrutaAleaDeVdd();
-                fruta_a.geraPos(25, 25);
+                fruta_a.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
             }else if(fruta_a!=null && fruta_b==null){
                 fruta_b = geraFrutaAlea();
                 if(fruta_b!=null){
                     do{
-                        fruta_b.geraPos(25, 25);
+                        fruta_b.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
                     }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
                             fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
                 }
@@ -80,7 +80,7 @@ public class threadCanvas extends Thread {
                     fruta_a = geraFrutaAlea();
                     if(fruta_a!=null){
                         do{
-                            fruta_a.geraPos(25, 25);
+                            fruta_a.geraPos(canvas.getCanvasNumberOfRows(), canvas.getCanvasNumberOfLines());
                         }while(fruta_a.get_coordenadas()[0]==fruta_b.get_coordenadas()[0] &&
                                 fruta_a.get_coordenadas()[1]==fruta_b.get_coordenadas()[1]);
                     }
@@ -88,7 +88,7 @@ public class threadCanvas extends Thread {
         }
         
         private void checaColisao(){
-            if(cobrinha.getCoordCabeca()[0]<0 || cobrinha.getCoordCabeca()[1]<0 || cobrinha.getCoordCabeca()[0]>=25 || cobrinha.getCoordCabeca()[1]>=25){
+            if(cobrinha.getCoordCabeca()[0]<0 || cobrinha.getCoordCabeca()[1]<0 || cobrinha.getCoordCabeca()[0]>=canvas.getCanvasNumberOfLines() || cobrinha.getCoordCabeca()[1]>=canvas.getCanvasNumberOfRows()){
                 cobrinha.morre();
             }
         }

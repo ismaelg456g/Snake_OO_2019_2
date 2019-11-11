@@ -14,10 +14,10 @@ import javax.swing.ImageIcon;
 public class CanvasJogo extends Canvas {
     public static final int RECT_WIDTH = 32;
     public static final int RECT_HEIGHT = 24;
-    public static final int MARGIN = 0;
+    public static final int MARGIN = 24;
 
     private int canvasNumberOfRows = 25;
-    private int canvasNumberOfLines = 25;
+    private int canvasNumberOfLines = 24;
     
     private Cobra cobrinha;
     private Barreira paredes;
@@ -38,6 +38,16 @@ public class CanvasJogo extends Canvas {
     private ImageIcon iconFrutaDiminuta;
     private ImageIcon iconGameOver;
     private ImageIcon iconMorte;
+    private ImageIcon icon0;
+    private ImageIcon icon1;
+    private ImageIcon icon2;
+    private ImageIcon icon3;
+    private ImageIcon icon4;
+    private ImageIcon icon5;
+    private ImageIcon icon6;
+    private ImageIcon icon7;
+    private ImageIcon icon8;
+    private ImageIcon icon9;
     
     private Image imgTerra;
     private Image imgCabeca;
@@ -55,6 +65,16 @@ public class CanvasJogo extends Canvas {
     private Image imgFrutaDiminuta;
     private Image imgGameOver;
     private Image imgMorte;
+    private Image img0;
+    private Image img1;
+    private Image img2;
+    private Image img3;
+    private Image img4;
+    private Image img5;
+    private Image img6;
+    private Image img7;
+    private Image img8;
+    private Image img9;
     
    public void paint(Graphics g) {
         desenhaCobra(g);
@@ -71,29 +91,29 @@ public class CanvasJogo extends Canvas {
         
     }
     public void gameOver(Graphics g){
-         g.drawImage(imgGameOver, 3*RECT_WIDTH+MARGIN, 8*RECT_HEIGHT+MARGIN, 20*RECT_WIDTH, 5*RECT_HEIGHT, null);
-         g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH+MARGIN, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+         g.drawImage(imgGameOver, 3*RECT_WIDTH, 8*RECT_HEIGHT+MARGIN, 20*RECT_WIDTH, 5*RECT_HEIGHT, null);
+         g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
     }
     
     public void desenhaBarreira(Graphics g){
         for(int[] a: paredes.get_coordenadas()){
-            g.drawImage(imgCorpo, a[1]*RECT_WIDTH+MARGIN, a[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            g.drawImage(imgCorpo, a[1]*RECT_WIDTH, a[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
         }
     }
     
     public void desenhaFruta(Graphics g, Fruta fruta){
         switch(fruta.get_tipo()){
             case 's':
-                g.drawImage(imgFrutaSim, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                g.drawImage(imgFrutaSim, fruta.get_coordenadas()[1]*RECT_WIDTH, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
             case 'b':
-                g.drawImage(imgFrutaBomba, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                g.drawImage(imgFrutaBomba, fruta.get_coordenadas()[1]*RECT_WIDTH, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
             case 'g':
-                g.drawImage(imgFrutaGrande, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                g.drawImage(imgFrutaGrande, fruta.get_coordenadas()[1]*RECT_WIDTH, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
             case 'd':
-                g.drawImage(imgFrutaDiminuta, fruta.get_coordenadas()[1]*RECT_WIDTH+MARGIN, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                g.drawImage(imgFrutaDiminuta, fruta.get_coordenadas()[1]*RECT_WIDTH, fruta.get_coordenadas()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 break;
         }
     }
@@ -106,40 +126,40 @@ public class CanvasJogo extends Canvas {
             if(i==0)
                 switch(cobrinha.get_direcao()){
                     case 'd':
-                        g.drawImage(imgCabeca, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCabeca, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'e':
-                        g.drawImage(imgCabecaE, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCabecaE, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'b':
-                        g.drawImage(imgCabecaB, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCabecaB, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'c':
-                        g.drawImage(imgCabecaC, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCabecaC, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                 }
             else if(i==cobrinha.get_coordenadas().size()-1){
                 switch(cobrinha.get_direcao_calda()){
                     case 'd':
-                        g.drawImage(imgCalda, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCalda, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'e':
-                        g.drawImage(imgCaldaE, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCaldaE, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'b':
-                        g.drawImage(imgCaldaB, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCaldaB, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                     case 'c':
-                        g.drawImage(imgCaldaC, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                        g.drawImage(imgCaldaC, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                         break;
                 }
             }
             else
-                g.drawImage(imgCorpo, coord[1]*RECT_WIDTH+MARGIN, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                g.drawImage(imgCorpo, coord[1]*RECT_WIDTH, coord[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
             i++;
         }
         if(cobrinha.get_atras_calda()[0]!=-1 || cobrinha.get_atras_calda()[1]!=-1 ){
-            g.drawImage(imgTerra, cobrinha.get_atras_calda()[1]*RECT_WIDTH+MARGIN, cobrinha.get_atras_calda()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+            g.drawImage(imgTerra, cobrinha.get_atras_calda()[1]*RECT_WIDTH, cobrinha.get_atras_calda()[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
             
         }
     }
@@ -154,7 +174,7 @@ public class CanvasJogo extends Canvas {
     }
     
     public CanvasJogo (Cobra cobrinha) {
-//        setBackground (Color.green);
+        setBackground (Color.black);
         setSize(800, 600);
         this.cobrinha = cobrinha;         
          
@@ -164,7 +184,7 @@ public class CanvasJogo extends Canvas {
     }
     
     public CanvasJogo (Cobra cobrinha, Barreira paredes) {
-//        setBackground (Color.green);
+        setBackground (Color.black);
         setSize(800, 600);
         this.cobrinha = cobrinha;         
         this.paredes = paredes;
@@ -191,6 +211,16 @@ public class CanvasJogo extends Canvas {
         iconFrutaDiminuta = new ImageIcon("img/frutaDiminuta.jpg");
         iconGameOver = new ImageIcon("img/gameover.jpg");
         iconMorte = new ImageIcon("img/morte.jpg");
+        icon0 = new ImageIcon("img/0.jpg");
+        icon1 = new ImageIcon("img/1.jpg");
+        icon2 = new ImageIcon("img/2.jpg");
+        icon3 = new ImageIcon("img/3.jpg");
+        icon4 = new ImageIcon("img/4.jpg");
+        icon5 = new ImageIcon("img/5.jpg");
+        icon6 = new ImageIcon("img/6.jpg");
+        icon7 = new ImageIcon("img/7.jpg");
+        icon8 = new ImageIcon("img/8.jpg");
+        icon9 = new ImageIcon("img/9.jpg");
         // Prepare an Image object to be used by drawImage()
         imgTerra = icon.getImage();
         imgCabeca = iconCabeca.getImage();
@@ -208,15 +238,64 @@ public class CanvasJogo extends Canvas {
         imgFrutaDiminuta = iconFrutaDiminuta.getImage();
         imgGameOver = iconGameOver.getImage();
         imgMorte = iconMorte.getImage();
+        img0 = icon0.getImage();
+        img1 = icon1.getImage();
+        img2 = icon2.getImage();
+        img3 = icon3.getImage();
+        img4 = icon4.getImage();
+        img5 = icon5.getImage();
+        img6 = icon6.getImage();
+        img7 = icon7.getImage();
+        img8 = icon8.getImage();
+        img9 = icon9.getImage();
     }
     
     public void init(Graphics g){
         for(int i = 0; i < canvasNumberOfRows; i++) {
                 for(int j = 0; j < canvasNumberOfLines; j++) {				
-                    g.drawImage(imgTerra, i*RECT_WIDTH+MARGIN, j*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
+                    g.drawImage(imgTerra, i*RECT_WIDTH, j*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
                 }
             }
         desenhaBarreira(g);
+        desenhaPlacar(g, 0);
+    }
+    public void desenhaPlacar(Graphics g, int pontos){
+        int i=0;
+        for(int aux=100000000; aux>=1; aux=aux/10, i++){
+            switch(pontos/aux){
+                case 0:
+                    g.drawImage(img0, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 1:
+                    g.drawImage(img1, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 2:
+                    g.drawImage(img2, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 3:
+                    g.drawImage(img3, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 4:
+                    g.drawImage(img4, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 5:
+                    g.drawImage(img5, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 6:
+                    g.drawImage(img6, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 7:
+                    g.drawImage(img7, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 8:
+                    g.drawImage(img8, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+                case 9:
+                    g.drawImage(img9, (canvasNumberOfRows-9+i)*RECT_WIDTH, 0, RECT_WIDTH, RECT_HEIGHT, null);
+                    break;
+            }
+            pontos = pontos%aux;
+        }
     }
     
     public int getCanvasNumberOfRows() {
