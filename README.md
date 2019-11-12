@@ -1,5 +1,5 @@
 # Snake
-	Esse projeto é um trabalho para a disciplina de Orientação a Objetos, da Universidade de Brasília.
+Esse projeto é um trabalho para a disciplina de Orientação a Objetos, da Universidade de Brasília.
 	Este trabalho consiste em desenvolver o jogo Snake em java, utilizando a api Swing.
 
 	As seguintes funcionalidades foram implementadas:
