@@ -13,7 +13,7 @@ public class threadCanvas extends Thread {
 		this.canvas = canvas;
                 this.cobrinha = cobrinha;
                 gerador = new Random();
-                paredes = new Barreira();
+                paredes = canvas.getParedes();
 	}
 	
 	@Override
@@ -35,6 +35,8 @@ public class threadCanvas extends Thread {
                             checaColisao();
                             if(!cobrinha.atravessaParede())
                                 paredes.checaColisao(cobrinha);
+                            else
+                                canvas.init(canvas.getGraphics());
                             destroiFrutas();
                             geradorFrutas();
                             if(!cobrinha.checa_morte()){

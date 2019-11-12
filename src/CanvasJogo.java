@@ -12,12 +12,12 @@ import javax.swing.ImageIcon;
  * @author hercules
  */
 public class CanvasJogo extends Canvas {
-    public static final int RECT_WIDTH = 32;
-    public static final int RECT_HEIGHT = 24;
-    public static final int MARGIN = 24;
+    public static final int RECT_WIDTH = 50;
+    public static final int RECT_HEIGHT = 37;
+    public static final int MARGIN = RECT_HEIGHT;
 
-    private int canvasNumberOfRows = 25;
-    private int canvasNumberOfLines = 24;
+    private int canvasNumberOfRows = 16;
+    private int canvasNumberOfLines = 14;
     
     private Cobra cobrinha;
     private Barreira paredes;
@@ -95,7 +95,7 @@ public class CanvasJogo extends Canvas {
     }
    
     public void gameOver(Graphics g){
-         g.drawImage(imgGameOver, 3*RECT_WIDTH, 8*RECT_HEIGHT+MARGIN, 20*RECT_WIDTH, 5*RECT_HEIGHT, null);
+         g.drawImage(imgGameOver, 3*RECT_WIDTH, 5*RECT_HEIGHT+MARGIN, 10*RECT_WIDTH, 3*RECT_HEIGHT, null);
          g.drawImage(imgMorte, cobrinha.get_coordenadas().get(1)[1]*RECT_WIDTH, cobrinha.get_coordenadas().get(1)[0]*RECT_HEIGHT+MARGIN, RECT_WIDTH, RECT_HEIGHT, null);
     }
     
@@ -319,5 +319,7 @@ public class CanvasJogo extends Canvas {
     public void setCanvasNumberOfLines(int canvasNumberOfLines) {
             this.canvasNumberOfLines = canvasNumberOfLines;
     }
-
+    public Barreira getParedes(){
+        return paredes;
+    }
 }

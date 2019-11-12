@@ -5,14 +5,21 @@
  */
 
 import java.util.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 
 public class Snake {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        //TelaInicial telaInicio = new TelaInicial();
+    public static void main(String[] args){
 
         TelaInicial.main(args);
     }

@@ -1,4 +1,11 @@
+import java.io.BufferedReader;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,26 +17,34 @@ import java.util.*;
  *
  * @author hercules
  */
-public class Barreira {
+public class Barreira{
     private List<int[]> coordenadas;
     
     public Barreira(){
         coordenadas = new ArrayList<int[]>();
-        coordenadas.add(0, new int[2]);
-        coordenadas.get(0)[0]=12;
-        coordenadas.get(0)[1]=5;
-        coordenadas.add(1, new int[2]);
-        coordenadas.get(1)[0]=12;
-        coordenadas.get(1)[1]=6;
-        coordenadas.add(2, new int[2]);
-        coordenadas.get(2)[0]=12;
-        coordenadas.get(2)[1]=7;
-        coordenadas.add(3, new int[2]);
-        coordenadas.get(3)[0]=12;
-        coordenadas.get(3)[1]=8;
-        coordenadas.add(4, new int[2]);
-        coordenadas.get(4)[0]=12;
-        coordenadas.get(4)[1]=9;
+        try{
+            BufferedReader arq = new BufferedReader(new FileReader("maps/map0"));
+            String numero="";
+            int aux=0;
+            while(numero!=null){
+                coordenadas.add(new int[2]);
+                numero= arq.readLine();
+                if(numero!=null){
+                    aux = Integer.parseInt(numero);
+                    coordenadas.get(coordenadas.size()-1)[0]=aux;
+                    numero= arq.readLine();
+                    if(numero!=null){
+                        aux = Integer.parseInt(numero);
+                        coordenadas.get(coordenadas.size()-1)[1]=aux;
+                    }else
+                        coordenadas.remove(coordenadas.size()-1);
+                }else
+                    coordenadas.remove(coordenadas.size()-1);
+            }
+        }catch(IOException i){
+            
+        }
+        
     }
     
     public boolean checaColisao(Cobra cobrinha){
