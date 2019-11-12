@@ -176,7 +176,7 @@ public class Cobra {
     }
     
     public void incrementaPlacar(){
-        placar++;
+        placar+=5;
     }
     public int getPlacar(){
         return placar;

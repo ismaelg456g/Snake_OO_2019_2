@@ -131,4 +131,25 @@ public class CobraTeste {
          assertEquals(0,coordenadas.get(0)[0]);
          assertEquals(3,coordenadas.get(0)[1]);
      }
+     
+     @Test
+     public void colisaoTeste(){
+         cobraTeste.aumentaTamanho();
+         cobraTeste.aumentaTamanho();
+         cobraTeste.aumentaTamanho();
+         cobraTeste.aumentaTamanho();
+         cobraTeste.set_direcao('d');
+         cobraTeste.mover();
+         cobraTeste.mover();
+         cobraTeste.mover();
+         cobraTeste.mover();
+         cobraTeste.set_direcao('b');
+         cobraTeste.mover();
+         cobraTeste.set_direcao('e');
+         cobraTeste.mover();
+         cobraTeste.set_direcao('c');
+         cobraTeste.mover();
+         cobraTeste.checaColisao();
+         assertTrue( cobraTeste.checa_morte());
+     }
 }

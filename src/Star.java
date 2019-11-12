@@ -11,6 +11,6 @@
 public class Star extends Cobra{
     @Override
     public void incrementaPlacar(){
-        placar+=2;
+        placar+=10;
     }
 }
