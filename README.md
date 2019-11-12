@@ -13,6 +13,8 @@ As seguintes funcionalidades foram implementadas:
 -Game loop
 
 -Pontuação
+
+-Teste automatizado da classe Cobra
 # Como Compilar
 Para compilar é necessário ter o java instalado em sua máquina, a versão utilizada foi a "openjdk 11.0.4".
 Após instalar o java, execute este comando:
