@@ -22,6 +22,7 @@ Após instalar o java, execute este comando:
 1. Para jogar execute o comando:
 
 ```make run```
+
 2. Comandos:
 
 Setas para mover a cobra
